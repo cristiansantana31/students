@@ -88,9 +88,13 @@ export class PanelComponent implements OnInit {
   }
 
   saveSing() {
+    let signatrues = [];
+    for (const s of this.signatureSelecteds) {
+      signatrues.push(s.id);
+    }
     let body = {
       email: this.email,
-      signatures: this.signatureSelecteds
+      signatures: signatrues
     };
     this.service.saveSing(body).subscribe((data: any) => {
       return Swal.fire('', data.message, 'success');
